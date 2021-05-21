@@ -10,6 +10,13 @@ Repositório com fim de estudos e revisão sobre Vue.Js, consumindo a API de Pro
 * Abra o Cmd e digite:
 
 ### `vue create nome-da-aplicacao`
-
 * Selecione a versão do Vue que será utilizada e aperte Enter
 * Após isso, o projeto será criado!
+
+**Criar aplicação Vue.js com Vuetify (Material Design UI)**
+* Abrir o Cmd e digite o mesmo comando da etapa anterior
+* Após o projeto ser criado, avance para o diretório do projeto criado (cd nome-da-aplicacao)
+* Faça a instalação do Vuetify com o comando
+
+### `vue add vuetify`
+* Este comando fará a instalação e configuração do seu projeto com o Vuetify
