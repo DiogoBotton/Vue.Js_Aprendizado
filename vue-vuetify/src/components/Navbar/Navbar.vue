@@ -5,7 +5,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title"> ProdutosAPI </v-list-item-title>
-          <v-list-item-subtitle> Product </v-list-item-subtitle>
+          <v-list-item-subtitle> Aprendendo Vue com Vuetify </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
