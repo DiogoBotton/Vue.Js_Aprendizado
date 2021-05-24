@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- INICIO Navegação Lateral -->
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-if="isLogged" v-model="drawer" app>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title"> ProdutosAPI </v-list-item-title>
@@ -53,10 +53,9 @@
       </div>
 
       <v-spacer></v-spacer>
-
+      
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        @click="Logout"
         text
       >
         <span class="mr-2"></span>
@@ -74,11 +73,14 @@ export default {
     return {
       // drawer (boolean) utilizado para esconder e mostrar barra de navegação no modo mobile
       drawer: true,
+      isLogged: localStorage.getItem('_tok_user') !== null,
       isMobile: window.innerWidth <= 1264,
-      // Itens da barra de navegação
-      items: [
+      // Itens da barra de navegação (caso estiver logado ou não, renderiza listas diferentes)
+      items: localStorage.getItem('_tok_user') !== null ? [
         { title: "Home", icon: "mdi-view-dashboard", path: "/" },
         { title: "Produtos", icon: "mdi-image", path: "/produtos" },
+      ] : [
+        { title: "Login", icon: "mdi-view-dashboard", path: "/login" }
       ],
       right: null,
     };
@@ -89,6 +91,10 @@ export default {
       // O comprimento da tela é menor ou igual à 1264 pixels?
       this.isMobile = window.innerWidth <= 1264;
     },
+    Logout(){
+      localStorage.removeItem('_tok_user');
+      this.$router.push('/login');
+    }
   },
   mounted() {
     // Adiciona um método que irá ouvir eventos relacionados à janela

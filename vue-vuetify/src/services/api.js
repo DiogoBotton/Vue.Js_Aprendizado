@@ -28,4 +28,7 @@ export default {
     postProduto(data) {
         return this.execute('post', 'Produtos/new', data);
     },
+    postLogin(data) {
+        return this.execute('post', 'Usuarios/Login', data);
+    }
 }
