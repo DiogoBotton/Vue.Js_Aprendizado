@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import api from "../../services/api";
+import api from '../../services/api';
 
 export default {
   name: "Produtos",
@@ -131,7 +131,9 @@ export default {
     };
   },
   async mounted() {
+    this.$store.commit('showLoading');
     this.produtos = await api.getProdutos();
+    this.$store.commit('hideLoading');
   },
   methods: {
     closeDialog() {

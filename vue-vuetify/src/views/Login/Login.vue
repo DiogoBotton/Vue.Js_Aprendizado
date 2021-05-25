@@ -63,6 +63,10 @@ export default {
                 // Direciona usuario para home (ainda não atualiza toda a página para renderizar o Navbar)
                 this.$router.push('/');
             }
+            else {
+              // Caso for um erro (400, 404...) retorna no próprio bloco then()
+              console.log(resp)
+            }
         })
         .catch(err => {
             console.log(err)

@@ -36,14 +36,15 @@ const router = new VueRouter({
     ]
 });
 
-// Rotas privadas
+// Rotas privadas (to -> informações da página que o usuário esta navegando)
 router.beforeEach((to, from, next) => {
+    let user = localStorage.getItem('_tok_user') !== null ? parseJwt(localStorage.getItem('_tok_user')) : null;
+    let isLogged = user !== null && user !== undefined ? true : false;
+
     // Caso a página precise de autenticação
     if (to.meta.requireAuth) {
         console.log(to)
-        let user = localStorage.getItem('_tok_user') !== null ? parseJwt(localStorage.getItem('_tok_user')) : null;
-        let isLogged = user !== null && user !== undefined ? true : false;
-        
+
         // Usuário está logado?
         if (isLogged) {
             next();
@@ -53,11 +54,13 @@ router.beforeEach((to, from, next) => {
         }
     }
     // Caso não precise, apenas libera a navegação
-    else{
-        next();
+    else {
+        // Proibe o usuário de entrar na página login novamente, caso já esteja logado
+        if (!isLogged)
+            next();
+        else
+            next('/');
     }
 });
-
-//TODO: Rotas para caso usuario já esteja logado, redirecionar para home
 
 export default router;
