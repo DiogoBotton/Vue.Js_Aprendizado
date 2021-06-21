@@ -73,13 +73,12 @@ export default {
     return {
       // drawer (boolean) utilizado para esconder e mostrar barra de navegação no modo mobile
       drawer: true,
-      isLogged: localStorage.getItem('_tok_user') !== null,
+      isLogged: true,//localStorage.getItem('_tok_user') !== null,
       isMobile: window.innerWidth <= 1264,
       // Itens da barra de navegação (caso estiver logado ou não, renderiza listas diferentes)
-      items: localStorage.getItem('_tok_user') !== null ? [
+      items: [
         { title: "Home", icon: "mdi-view-dashboard", path: "/" },
         { title: "Produtos", icon: "mdi-image", path: "/produtos" },
-      ] : [
         { title: "Login", icon: "mdi-view-dashboard", path: "/login" }
       ],
       right: null,
