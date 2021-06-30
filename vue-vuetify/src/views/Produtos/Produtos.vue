@@ -20,7 +20,7 @@
       </v-data-table>
       <!-- FIM Tabela -->
 
-      <FormSaveProduto :addButton="addProduct" :data="produtos" />
+      <FormSaveProduto :addButton="addProduct" />
       <!-- Botão add (ma-2 é um spacing) -->
       <div class="text-center">
         <v-btn

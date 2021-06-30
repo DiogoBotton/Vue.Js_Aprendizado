@@ -23,6 +23,12 @@
       required
     ></v-file-input>
 
+    <v-text-field
+      v-model="currencyFormated"
+      label="Salário"
+      required
+    ></v-text-field>
+
     <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
       Validar e "Enviar"
     </v-btn>
@@ -36,6 +42,7 @@ export default {
   data: () => ({
     valid: false,
     name: "",
+    currency: null,
     // Validação do campo nome
     nameRules: [
       (v) => !!v || "Nome é necessário",
@@ -62,11 +69,27 @@ export default {
         let user = {
           nome: this.name,
           email: this.email,
-          fotoPerfil: reader.result //Imagem convertida em base64
+          fotoPerfil: reader.result, //Imagem convertida em base64
         };
 
         console.log(user);
       };
+    },
+    formatCurrency(value) {
+      if (value === null) {
+        return 0;
+      }
+      value = value + "";
+      value = parseInt(value.replace(/[\D]+/g, ""));
+      value = value + "";
+      value = value.replace(/([0-9]{2})$/g, ",$1");
+
+      if (value.length > 6) {
+        value = value.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+      }
+
+      if (value == "NaN") return "";
+      else return value;
     },
     validate() {
       this.$refs.form.validate();
@@ -76,6 +99,16 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
+    },
+  },
+  computed: {
+    currencyFormated: {
+      get: function () {
+        return this.formatCurrency(this.currency);
+      },
+      set: function (newValue) {
+        this.currency = Number(newValue.replace(/[^0-9.]/g, ""));
+      },
     },
   },
 };
