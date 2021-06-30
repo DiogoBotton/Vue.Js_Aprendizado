@@ -49,7 +49,6 @@ export default {
     money: {
       decimal: ",",
       thousands: ".",
-      prefix: "R$ ",
       precision: 2,
     },
     // Validação do campo nome
@@ -79,6 +78,7 @@ export default {
           nome: this.name,
           email: this.email,
           fotoPerfil: reader.result, //Imagem convertida em base64
+          salario: parseFloat(this.currency.toString().replace('.', '').replace(',', '.')),
         };
 
         console.log(user);
