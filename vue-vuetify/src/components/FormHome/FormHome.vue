@@ -23,11 +23,12 @@
       required
     ></v-file-input>
 
-    <v-text-field
-      v-model="currencyFormated"
-      label="Salário"
+    <v-text-field 
+      v-model="currency" 
+      label="Salário" 
       required
-    ></v-text-field>
+      v-money="money"
+      ></v-text-field>
 
     <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
       Validar e "Enviar"
@@ -38,11 +39,19 @@
 </template>
 
 <script>
+import { VMoney } from "v-money";
+
 export default {
   data: () => ({
     valid: false,
     name: "",
-    currency: null,
+    currency: 0,
+    money: {
+      decimal: ",",
+      thousands: ".",
+      prefix: "R$ ",
+      precision: 2,
+    },
     // Validação do campo nome
     nameRules: [
       (v) => !!v || "Nome é necessário",
@@ -58,7 +67,7 @@ export default {
     ],
     imgBase64: null,
   }),
-
+  directives: {money: VMoney},
   methods: {
     SubmitRequest() {
       // Conversão de imagem para base64
@@ -75,22 +84,6 @@ export default {
         console.log(user);
       };
     },
-    formatCurrency(value) {
-      if (value === null) {
-        return 0;
-      }
-      value = value + "";
-      value = parseInt(value.replace(/[\D]+/g, ""));
-      value = value + "";
-      value = value.replace(/([0-9]{2})$/g, ",$1");
-
-      if (value.length > 6) {
-        value = value.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
-      }
-
-      if (value == "NaN") return "";
-      else return value;
-    },
     validate() {
       this.$refs.form.validate();
 
@@ -99,16 +92,6 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
-  },
-  computed: {
-    currencyFormated: {
-      get: function () {
-        return this.formatCurrency(this.currency);
-      },
-      set: function (newValue) {
-        this.currency = Number(newValue.replace(/[^0-9.]/g, ""));
-      },
     },
   },
 };
