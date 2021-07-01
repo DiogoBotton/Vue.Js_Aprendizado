@@ -27,7 +27,6 @@
       v-model="currency" 
       label="Salário" 
       required
-      v-money="money"
       ></v-text-field>
 
     <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
@@ -39,18 +38,12 @@
 </template>
 
 <script>
-import { VMoney } from "v-money";
 
 export default {
   data: () => ({
     valid: false,
     name: "",
-    currency: 0,
-    money: {
-      decimal: ",",
-      thousands: ".",
-      precision: 2,
-    },
+    currency: parseFloat(800.8584.toFixed(2)),
     // Validação do campo nome
     nameRules: [
       (v) => !!v || "Nome é necessário",
@@ -66,7 +59,6 @@ export default {
     ],
     imgBase64: null,
   }),
-  directives: {money: VMoney},
   methods: {
     SubmitRequest() {
       // Conversão de imagem para base64

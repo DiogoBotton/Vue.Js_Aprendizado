@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { parseJwt } from './services/jwt';
+//import { parseJwt } from './services/jwt';
 
 Vue.use(VueRouter);
 
@@ -37,30 +37,30 @@ const router = new VueRouter({
 });
 
 // Rotas privadas (to -> informações da página que o usuário esta navegando)
-router.beforeEach((to, from, next) => {
-    let user = localStorage.getItem('_tok_user') !== null ? parseJwt(localStorage.getItem('_tok_user')) : null;
-    let isLogged = user !== null && user !== undefined ? true : false;
+// router.beforeEach((to, from, next) => {
+//     let user = localStorage.getItem('_tok_user') !== null ? parseJwt(localStorage.getItem('_tok_user')) : null;
+//     let isLogged = user !== null && user !== undefined ? true : false;
 
-    // Caso a página precise de autenticação
-    if (to.meta.requireAuth) {
-        console.log(to)
+//     // Caso a página precise de autenticação
+//     if (to.meta.requireAuth) {
+//         console.log(to)
 
-        // Usuário está logado?
-        if (isLogged) {
-            next();
-        }
-        else {
-            next('/login');
-        }
-    }
-    // Caso não precise, apenas libera a navegação
-    else {
-        // Proibe o usuário de entrar na página login novamente, caso já esteja logado
-        if (!isLogged)
-            next();
-        else
-            next('/');
-    }
-});
+//         // Usuário está logado?
+//         if (isLogged) {
+//             next();
+//         }
+//         else {
+//             next('/login');
+//         }
+//     }
+//     // Caso não precise, apenas libera a navegação
+//     else {
+//         // Proibe o usuário de entrar na página login novamente, caso já esteja logado
+//         if (!isLogged)
+//             next();
+//         else
+//             next('/');
+//     }
+// });
 
 export default router;
