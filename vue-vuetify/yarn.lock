@@ -8250,6 +8250,11 @@ vuetify@^2.4.0:
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.5.0.tgz#5e510ed288c268c74fb791facadc7c899e286212"
   integrity sha512-Lpnwm64xYVEXb5BXdadSRaH0QHjXLFhPPjuVU9VuqWp3Nzr+WP5vA9nMPkJAfUj8vKIJGTRXqyGTGVa4VwrO3A==
 
+vuex-cache@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/vuex-cache/-/vuex-cache-3.4.0.tgz#0aec66b7abb370b1a089f678681af8efe5a9289b"
+  integrity sha512-C0HJvVTEdjn8gq0EXemcJCBgAyPLnms8VGz/kMakrpaF6XNwkZY5KvySkdBJSY6rp0eTdWMoHPVU2Oq+dK7WEQ==
+
 vuex-persistedstate@^4.0.0-beta.3:
   version "4.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/vuex-persistedstate/-/vuex-persistedstate-4.0.0-beta.3.tgz#89dd712de72d28e85cc95467d066002c1405f277"
