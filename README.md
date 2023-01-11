@@ -20,3 +20,12 @@ Repositório com fim de estudos e revisão sobre Vue.Js, consumindo a API de Pro
 
 ### `vue add vuetify`
 * Este comando fará a instalação e configuração do seu projeto com o Vuetify
+
+**Iniciar o projeto**
+* Abra o terminal no próprio projeto e digite:
+
+Utilizando yarn
+### `yarn run serve`
+
+Utilizando npm
+### `npm run serve`
